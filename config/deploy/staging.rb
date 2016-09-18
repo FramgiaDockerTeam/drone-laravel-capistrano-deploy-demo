@@ -17,7 +17,7 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@example.com}, my_property: :my_value
+role :app, %w{deploy@10.0.1.127}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
@@ -68,7 +68,7 @@ set :laravel_version, 5.1
 
 # If using Laravel 5+, a dotenv file is used for environment configuration.
 # This variable uploads the given file from the the host to the guest.
-set :laravel_dotenv_file, './.env'
+set :laravel_dotenv_file, ''
 
 # Flags to add to artisan calls.
 set :laravel_artisan_flags, "--env=staging"
@@ -77,7 +77,9 @@ set :laravel_artisan_flags, "--env=staging"
 set :laravel_set_linked_dirs, true
 
 # Will set ACL paths based on your Laravel version
-set :laravel_set_acl_paths, true
+set :laravel_set_acl_paths, false
 
 # Which user to set ACL permissions for.
 set :laravel_server_user, "www-data"
+
+set :laravel_artisan_migrate_flags, "--env=staging"
