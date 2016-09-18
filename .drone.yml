@@ -1,3 +1,23 @@
+build:
+  image: framgia/laravel-workspace
+  commands:
+    - sleep 60
+    - chmod -R 777 storage/
+    - chmod -R 777 bootstrap/cache/
+    - composer install
+    - npm install
+    - gulp
+    - cp .env.testing .env
+    - php artisan migrate --database=mysql_test
+    - vendor/bin/phpunit
+compose:
+  database:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: root
 deploy:
   capistrano:
     image: fdplugins/capistrano
